@@ -10,16 +10,16 @@
   <style>
     #map { height: 605px; }
  </style>
-  <title>Flamingo:Live Fire Map</title>
+  <title>Flamingo</title>
 </head>
 <body>
   <!-- Adding Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index.html">
+        <a class="navbar-brand" href="public\index.html">
             <img src="/nasa_app_logo.png" alt="Flamingo" width="60" height="60">
         </a>
-        <a class="navbar-brand" href="/index.html">
+        <a class="navbar-brand" href="public\index.html">
           <h3>Flamingo</h3>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -59,10 +59,7 @@
 <!-- Map start -->
 <div id="map"></div>
     <script>
-            // Show the spinner
-            document.getElementById('spinner').style.display = 'flex';
-            navigator.geolocation.getCurrentPosition((position)=>{
-            // Your existing code...
+        navigator.geolocation.getCurrentPosition((position)=>{
             let{
                 latitude, longitude
             }=position.coords;
@@ -72,12 +69,9 @@
               iconSize: [38, 38],
             });
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        noWrap: true
-    }).addTo(map).on('load', function() {
-        document.getElementById('spinner').style.display = 'none';
-    });
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
             fetch('https://firms.modaps.eosdis.nasa.gov/api/area/csv/e435c561b12fd724d1bd8d6d7462b1aa/VIIRS_SNPP_NRT/world/1')
         .then(response => response.text()) // Parse the data as text
         .then(data => {
@@ -102,8 +96,10 @@
             latLong.forEach(latLong => {
                 L.marker([latLong.latitude, latLong.longitude],{icon: myIcon}).addTo(map);
             });
-          })
-        .catch(error => console.error('Error:', error)); // Catch and log any errors
+        })
+    .catch(error => console.error('Error:', error)); // Catch and log any errors
+
+            // L.marker([lal,longitude]).addTo(map);
         });
     </script>
 <!-- Map End -->
