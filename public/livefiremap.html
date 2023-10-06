@@ -10,16 +10,16 @@
   <style>
     #map { height: 605px; }
  </style>
-  <title>Flamingo</title>
+  <title>Flamingo:Live Fire Map</title>
 </head>
 <body>
   <!-- Adding Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="public\index.html">
+        <a class="navbar-brand" href="/index.html">
             <img src="/nasa_app_logo.png" alt="Flamingo" width="60" height="60">
         </a>
-        <a class="navbar-brand" href="public\index.html">
+        <a class="navbar-brand" href="/index.html">
           <h3>Flamingo</h3>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -41,7 +41,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/sos.html">SOS</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link" href="/forum.html">Forum</a>
                 </li>
                 <li class="nav-item">
@@ -49,7 +49,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/about_us.html">About Us</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
@@ -59,7 +59,10 @@
 <!-- Map start -->
 <div id="map"></div>
     <script>
-        navigator.geolocation.getCurrentPosition((position)=>{
+            // Show the spinner
+            document.getElementById('spinner').style.display = 'flex';
+            navigator.geolocation.getCurrentPosition((position)=>{
+            // Your existing code...
             let{
                 latitude, longitude
             }=position.coords;
@@ -69,9 +72,12 @@
               iconSize: [38, 38],
             });
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        noWrap: true
+    }).addTo(map).on('load', function() {
+        document.getElementById('spinner').style.display = 'none';
+    });
             fetch('https://firms.modaps.eosdis.nasa.gov/api/area/csv/e435c561b12fd724d1bd8d6d7462b1aa/VIIRS_SNPP_NRT/world/1')
         .then(response => response.text()) // Parse the data as text
         .then(data => {
@@ -96,10 +102,8 @@
             latLong.forEach(latLong => {
                 L.marker([latLong.latitude, latLong.longitude],{icon: myIcon}).addTo(map);
             });
-        })
-    .catch(error => console.error('Error:', error)); // Catch and log any errors
-
-            // L.marker([lal,longitude]).addTo(map);
+          })
+        .catch(error => console.error('Error:', error)); // Catch and log any errors
         });
     </script>
 <!-- Map End -->
@@ -122,14 +126,14 @@
           <li><a href="/livefiremap.html" class="text-dark">Live Fire Map</a></li>
           <li><a href="/radio.html" class="text-dark">Radio</a></li>
           <li><a href="/sos.html" class="text-dark">SOS</a></li>
-          <li><a href="/forum.html" class="text-dark">Forum</a></li>
+          <!-- <li><a href="/forum.html" class="text-dark">Forum</a></li> -->
         </ul>
       </div>
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
         <h5 class="text-uppercase">Contact Info</h5>
         <ul class="list-unstyled mb-0">
           <li class="text-dark"><a href="https://maps.app.goo.gl/kVN7uro8zET33Lu86">Shahjalal University of Science & Technology (SUST), Sylhet, Bangladesh</a></li>
-          <li class="text-dark">Phone: +880 1327403936</li>
+          <li class="text-dark">Phone: <a href="tel:+8801327403936">+880 1327403936</a></li>
           <li class="text-dark">Email: shafinnafiullah@gmail.com </li>
         </ul>
       </div>

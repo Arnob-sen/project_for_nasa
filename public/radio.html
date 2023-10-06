@@ -8,16 +8,16 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <!-- <script src="/src/App.js"></script> -->
-  <title>Flamingo</title>
+  <title>Flamingo:Web Radio</title>
 </head>
 <body>
   <!-- Adding Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="public\index.html">
+        <a class="navbar-brand" href="/index.html">
             <img src="/nasa_app_logo.png" alt="Flamingo" width="60" height="60">
         </a>
-        <a class="navbar-brand" href="public\index.html">
+        <a class="navbar-brand" href="/index.html">
           <h3>Flamingo</h3>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -39,24 +39,33 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/sos.html">SOS</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link" href="/forum.html">Forum</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/history.html">History Map</a>
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                   <a class="nav-link" href="/about_us.html">About Us</a>
                 </li> -->
             </ul>
         </div>
     </div>
 </nav>
-<img src="img/radio_image.jpeg" alt="error"/>
+<img src="img/radio_bg.jpg" class="d-block w-100" alt="error"/>
 <!-- End of Navbar -->
 <div id="root"></div>
-<button id="getLocation">Get Alert</button>
-    <p id="message"></p>
+<div class="d-flex justify-content-center  m-3 p-3">
+  <button id="getLocation" class="btn btn-outline-danger me-3">Get Alert</button>
+  <button class="btn btn-outline-danger me-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Text Response
+  </button>
+</div>
+<div class="d-flex justify-content-center mt-3">
+  <div class="collapse" id="collapseExample">
+    <p id="message" class="text-danger">Click Get Alert Generate Response</p>
+  </div>
+</div>
 
     <script>
         document.getElementById('getLocation').addEventListener('click', function() {
@@ -106,14 +115,14 @@
           <li><a href="/livefiremap.html" class="text-dark">Live Fire Map</a></li>
           <li><a href="/radio.html" class="text-dark">Radio</a></li>
           <li><a href="/sos.html" class="text-dark">SOS</a></li>
-          <li><a href="/forum.html" class="text-dark">Forum</a></li>
+          <!-- <li><a href="/forum.html" class="text-dark">Forum</a></li> -->
         </ul>
       </div>
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
         <h5 class="text-uppercase">Contact Info</h5>
         <ul class="list-unstyled mb-0">
           <li class="text-dark"><a href="https://maps.app.goo.gl/kVN7uro8zET33Lu86">Shahjalal University of Science & Technology (SUST), Sylhet, Bangladesh</a></li>
-          <li class="text-dark">Phone: +880 1327403936</li>
+          <li class="text-dark">Phone: <a href="tel:+8801327403936">+880 1327403936</a></li>
           <li class="text-dark">Email: shafinnafiullah@gmail.com </li>
         </ul>
       </div>
